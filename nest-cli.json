@@ -26,6 +26,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/common/tsconfig.lib.json"
       }
+    },
+    "messaging": {
+      "type": "application",
+      "root": "apps/messaging",
+      "entryFile": "main",
+      "sourceRoot": "apps/messaging/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/messaging/tsconfig.app.json"
+      }
     }
   }
 }

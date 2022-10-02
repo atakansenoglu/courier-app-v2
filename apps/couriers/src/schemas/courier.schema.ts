@@ -11,6 +11,9 @@ export class Courier extends AbstractDocument {
 
   @Prop()
   longitude: string;
+
+  @Prop({ required: false })
+  createdAt?: Date;
 }
 
 export const CourierSchema = SchemaFactory.createForClass(Courier);

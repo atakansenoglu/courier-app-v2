@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { CouriersController } from './couriers.controller';
 import { CouriersService } from './couriers.service';
@@ -8,6 +8,7 @@ import { CouriersRepository } from './couriers.repository';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Courier, CourierSchema } from './schemas/courier.schema';
 import { MESSAGING_SERVICE } from './constants/service';
+import * as redisStore from 'cache-manager-redis-store';
 
 @Module({
   imports: [
@@ -23,6 +24,12 @@ import { MESSAGING_SERVICE } from './constants/service';
     MongooseModule.forFeature([{ name: Courier.name, schema: CourierSchema }]),
     RmqModule.register({
       name: MESSAGING_SERVICE,
+    }),
+    CacheModule.register({
+      isGlobal: true,
+      store: redisStore,
+      host: 'localhost',
+      port: 6379,
     }),
   ],
   controllers: [CouriersController],

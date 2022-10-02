@@ -1,0 +1,27 @@
+services:
+  couriers:
+    build:
+      context: .
+      dockerfile: ./apps/couriers/Dockerfile
+      target: development
+    command: npm run start:dev couriers
+    env_file:
+      - ./apps/couriers/.env
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3000:3000'
+
+  mongodb:
+    image: docker.io/bitnami/mongodb:5.0
+    ports:
+      - '27017:27017'
+    volumes:
+      - 'mongodb_data:/bitnami/mongodb'
+
+volumes:
+  mongodb_data:
+    driver: local

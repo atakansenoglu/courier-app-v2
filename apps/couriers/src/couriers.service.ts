@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
-import { MESSAGING_SERVICE } from 'apps/messaging/src/constants/service';
+import { MESSAGING_SERVICE } from 'apps/couriers/src/constants/service';
 import { CouriersRepository } from './couriers.repository';
 import { CreateCourierRequest } from './dto/create-courier.request';
 
@@ -31,7 +31,7 @@ export class CouriersService {
     }
   }
 
-  async getOrders() {
+  async getCouriers() {
     return this.couriersRepository.find({});
   }
 }
